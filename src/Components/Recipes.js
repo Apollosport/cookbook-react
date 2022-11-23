@@ -1,20 +1,21 @@
-const Recipes = () => {
+const Recipes = ({ recipes }) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Leeeeets Cooook!</h1>
-        {recipes &&
-          recipes.map((recipe) => (
-            <div>
-              <h1>{recipe.fields.title}</h1>
-              <span>Rating: {recipe.fields.rating}</span>
-              <img
-                src={recipe.fields.recipeImage.fields.file.url}
-                height="400"
-              />
-              <p>{recipe.fields.description}</p>
-            </div>
-          ))}
+        {/*         <h1>Leeeeets Cooook!</h1> */}
+        <div className="container">
+          {recipes &&
+            recipes.map((recipe) => (
+              <div>
+                <h3>{recipe.fields.title}</h3>
+                <img
+                  className="recipeImage"
+                  src={recipe.fields.recipeImage.fields.file.url}
+                />
+                <p>Rating: {recipe.fields.rating}</p>
+              </div>
+            ))}
+        </div>
       </header>
     </div>
   );

@@ -1,5 +1,10 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -25,7 +30,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: ghostwhite;
 }
 
 @keyframes App-logo-spin {
@@ -46,6 +51,7 @@
 }
 
 .img {
+  margin-top: 30px;
   height: 300px;
 }
 
@@ -64,23 +70,20 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(175, 140, 43, 0.705);
+  background-color: rgba(50, 200, 220, 0.705);
   color: ghostwhite;
   font-size: 1em;
   position: sticky;
   top: 10px;
   width: 100vw;
   border-width: 3px 0px;
-  border-color: rgb(152, 82, 2);
+  border-color: rgb(180, 180, 180);
   border-style: solid;
 }
 
 .imgNavbar {
   height: 70px;
   margin: 10px;
-  border: 0px !important;
-  border-width: 0px !important;
-  border: 0px !important;
 }
 
 .search-input {
@@ -88,5 +91,27 @@
 }
 
 .footer {
+  /* position: sticky; */
+  /* bottom: 100px; */
   font-size: large;
+  position: sticky;
+  /*   bottom: 0; */
+  height: 30px;
+  width: 100vw;
+  position: "fixed";
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.recipeImage {
+  height: 400px;
+  width: 400px;
 }

@@ -11,6 +11,7 @@ import flag7 from "./japan.webp";
 
 const Navbar = () => {
   const [input, setInput] = useState("");
+  const [kitchen, setKitchen] = useState("");
 
   const changeHandler = (e) => {
     setInput(e.target.value);
@@ -28,19 +29,35 @@ const Navbar = () => {
       }} */
     >
       {/*       <img src={image} alt="Let's Cook!" className={"imgNavbar"} /> */}
-      <Link to="/" className="s">
+      <Link to="/" className="logo">
         <img src={image} alt="Let's Cook!" className={"imgNavbar"} />
       </Link>
-      <NavLink to="/asian" className="links">
+      <NavLink
+        to="/recipes"
+        className="links"
+        onClick={() => setKitchen("asi")}
+      >
         Asian
       </NavLink>
-      <NavLink to="/kaidou" className="links">
+      <NavLink
+        to="/recipes"
+        className="links"
+        onClick={() => setKitchen("eur")}
+      >
         European
       </NavLink>
-      <NavLink to="/shanks" className="links">
-        American
+      <NavLink
+        to="/recipes"
+        className="links"
+        onClick={() => setKitchen("sam")}
+      >
+        South-American
       </NavLink>
-      <NavLink to="/newgate" className="links">
+      <NavLink
+        to="/recipes"
+        className="links"
+        onClick={() => setKitchen("ind")}
+      >
         Indian
       </NavLink>
       <input
