@@ -55,18 +55,6 @@ body {
   height: 300px;
 }
 
-.links {
-  color: ghostwhite;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid ghostwhite;
-  padding: 5px 15px;
-  margin: 0 5px;
-  display: inline-block;
-  /* border-radius: 3px; */
-  border-radius: 25px;
-}
-
 .navbar {
   display: flex;
   align-items: center;
@@ -123,4 +111,20 @@ body {
   margin: 30px;
   padding: 0px 20px;
   border-radius: 25px;
+}
+
+.links {
+  color: ghostwhite;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid ghostwhite;
+  padding: 5px 15px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+a.links:hover {
+  color: rgba(50, 200, 220, 0.705);
+  background-color: ghostwhite;
 }
