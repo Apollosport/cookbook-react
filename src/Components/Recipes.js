@@ -6,7 +6,7 @@ const Recipes = ({ recipes }) => {
         <div className="container">
           {recipes &&
             recipes.map((recipe) => (
-              <div>
+              <div className="recip">
                 <h3>{recipe.fields.title}</h3>
                 <img
                   className="recipeImage"
