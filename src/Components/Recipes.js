@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Recipes = ({ recipes, setKitchen }) => {
-  const categoryHandler = (what) => {
-    /* console.log("hello ", what); */
-    /* setKitchen(what); */
+  const navigate = useNavigate();
+
+  const categoryHandler = (category, id) => {
+    setKitchen(category);
+    navigate(`/recipes${category}/${id}`);
   };
 
-  console.log("recipes recipe.id", recipes.id);
   return (
     <div className="App">
       <header className="App-header">
@@ -14,18 +15,23 @@ const Recipes = ({ recipes, setKitchen }) => {
           {recipes &&
             recipes.map((recipe) => (
               <div className="recip">
-                <Link
-                  to={`/recipesasi/${recipe.fields.id}`}
-                  onClick={() => categoryHandler(recipe.fields.category)}
+                <div
+                  className="recipeDiv"
+                  onClick={() =>
+                    /* navigate(
+                      `/recipes${recipe.fields.category}/${recipe.fields.id}`
+                    ) */
+                    categoryHandler(recipe.fields.category, recipe.fields.id)
+                  }
                 >
                   <h3>{recipe.fields.title}</h3>
-                </Link>
+                  <img
+                    className="recipeImage"
+                    src={recipe.fields.recipeImage.fields.file.url}
+                  />
+                </div>
                 <p>{recipe.fields.id}</p>
                 <p>{recipe.fields.category}</p>
-                <img
-                  className="recipeImage"
-                  src={recipe.fields.recipeImage.fields.file.url}
-                />{" "}
                 <div className="star-rating">
                   {[...Array(recipe.fields.rating)].map(() => {
                     return <span className="star">&#9733;</span>;

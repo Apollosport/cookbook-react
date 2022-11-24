@@ -34,7 +34,10 @@ const App = () => {
       <header className="App-header">
         <Navbar setKitchen={setKitchen} />
         <Routes>
-          <Route path="/" element={<Recipes recipes={recipes} />} />
+          <Route
+            path="/"
+            element={<Recipes recipes={recipes} setKitchen={setKitchen} />}
+          />
           <Route
             path="/recipes"
             element={<Recipes recipes={recipes} setKitchen={setKitchen} />}
@@ -52,16 +55,24 @@ const App = () => {
             element={<RecipesEur recipes={recipes} kitchen={kitchen} />}
           />
           <Route
+            path="/recipeseur/:id"
+            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
+          />
+          <Route
             path="/recipesind"
             element={<RecipesInd recipes={recipes} kitchen={kitchen} />}
+          />
+          <Route
+            path="/recipesind/:id"
+            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
           />
           <Route
             path="/recipessam"
             element={<RecipesSam recipes={recipes} kitchen={kitchen} />}
           />
           <Route
-            path="/recipesasi/:id"
-            element={<Recipes recipes={recipes} kitchen={kitchen} />}
+            path="/recipessam/:id"
+            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

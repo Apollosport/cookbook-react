@@ -9,7 +9,10 @@ const RecipesInd = ({ recipes, kitchen }) => {
             recipes.map((recipe) =>
               recipe.fields.category === "ind" ? (
                 <div className="recip">
-                  <Link to={`/recipesasi/${recipe.fields.id}`}>
+                  <Link
+                    to={`/recipesind/${recipe.fields.id}`}
+                    className="detailLinks"
+                  >
                     <h3>{recipe.fields.title}</h3>
                     <img
                       className="recipeImage"

@@ -109,7 +109,7 @@ body {
 
 .recip {
   border: 2px solid rgb(255, 215, 0);
-  margin: 30px;
+  margin: 20px;
   padding: 0px 20px;
   border-radius: 25px;
 }
@@ -130,6 +130,21 @@ a.links:hover {
   background-color: ghostwhite;
 }
 
+a.detailLinks:link {
+  color: ghostwhite;
+  text-decoration: none;
+}
+
+a.detailLinks:visited {
+  color: ghostwhite;
+  text-decoration: none;
+}
+
+a.detailLinks:hover {
+  color: lightgray;
+  text-decoration: none;
+}
+
 .star-rating {
   margin-bottom: 20px;
   padding-top: -5px;
@@ -145,4 +160,20 @@ a.links:hover {
 .active {
   color: greenyellow;
   border: 2px solid greenyellow;
+}
+
+.recipeDiv {
+  cursor: pointer;
+}
+
+.goBack {
+  color: #282c34;
+  font-size: large;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid ghostwhite;
+  padding: 5px 15px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 25px;
 }
