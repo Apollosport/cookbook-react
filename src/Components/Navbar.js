@@ -9,9 +9,8 @@ import flag5 from "./Mexico.png";
 import flag6 from "./american.webp";
 import flag7 from "./japan.webp";
 
-const Navbar = () => {
+const Navbar = ({ setKitchen }) => {
   const [input, setInput] = useState("");
-  const [kitchen, setKitchen] = useState("");
 
   const changeHandler = (e) => {
     setInput(e.target.value);
@@ -33,7 +32,7 @@ const Navbar = () => {
         <img src={image} alt="Let's Cook!" className={"imgNavbar"} />
       </Link>
       <NavLink
-        to="/recipes"
+        to="/recipesasi"
         className="links"
         onClick={() => setKitchen("asi")}
       >

@@ -80,18 +80,19 @@ body {
 }
 
 .footer {
-  /* position: sticky; */
-  /* bottom: 100px; */
   font-size: large;
-  position: sticky;
-  /*   bottom: 0; */
   height: 30px;
   width: 100vw;
-  position: "fixed";
+  position: sticky;
   left: 0;
   bottom: 0;
-  height: 60px;
+  height: 50px;
   width: 100%;
+  background-color: #282c34;
+  opacity: 80%;
+  border-width: 2px 0px 0px 0px;
+  border-color: rgb(180, 180, 180);
+  border-style: solid;
 }
 
 .container {
@@ -107,7 +108,7 @@ body {
 }
 
 .recip {
-  border: 2px solid rgb(181, 183, 54);
+  border: 2px solid rgb(255, 215, 0);
   margin: 30px;
   padding: 0px 20px;
   border-radius: 25px;
@@ -127,4 +128,21 @@ body {
 a.links:hover {
   color: rgba(50, 200, 220, 0.705);
   background-color: ghostwhite;
+}
+
+.star-rating {
+  margin-bottom: 20px;
+  padding-top: -5px;
+}
+
+.star {
+  font-size: 2em;
+  color: rgb(255, 215, 0);
+  margin-top: -12px;
+  padding-top: -100px;
+}
+
+.active {
+  color: greenyellow;
+  border: 2px solid greenyellow;
 }
