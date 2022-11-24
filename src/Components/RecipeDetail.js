@@ -7,13 +7,8 @@ const RecipeDetail = ({ recipes, kitchen }) => {
       element.fields.id === Number(id) && element.fields.category === kitchen
   );
 
-  /* const recipe = recipes.fields.find(
-    (element) => element.id === Number(id)   ); */
-
   console.log("kitchen ", kitchen);
   console.log("category ", recipe.fields.category);
-
-  /*   console.log("id ", recipe.fields.id); */
 
   return (
     <div className="RecipeDetails">

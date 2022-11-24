@@ -7,7 +7,10 @@ import Footer from "./Components/Footer";
 import Recipes from "./Components/Recipes";
 import ErrorPage from "./Components/ErrorPage";
 import RecipesAsi from "./Components/RecipesAsi";
-import RecipeAsiDetail from "./Components/RecipeAsiDetail";
+import RecipesEur from "./Components/RecipesEur";
+import RecipesInd from "./Components/RecipesInd";
+import RecipesSam from "./Components/RecipesSam";
+import RecipeDetail from "./Components/RecipeDetail";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
@@ -42,9 +45,20 @@ const App = () => {
           />
           <Route
             path="/recipesasi/:id"
-            element={<RecipeAsiDetail recipes={recipes} kitchen={kitchen} />}
+            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
           />
-
+          <Route
+            path="/recipeseur"
+            element={<RecipesEur recipes={recipes} kitchen={kitchen} />}
+          />
+          <Route
+            path="/recipesind"
+            element={<RecipesInd recipes={recipes} kitchen={kitchen} />}
+          />
+          <Route
+            path="/recipessam"
+            element={<RecipesSam recipes={recipes} kitchen={kitchen} />}
+          />
           <Route
             path="/recipesasi/:id"
             element={<Recipes recipes={recipes} kitchen={kitchen} />}

@@ -39,21 +39,21 @@ const Navbar = ({ setKitchen }) => {
         Asian
       </NavLink>
       <NavLink
-        to="/recipes"
+        to="/recipeseur"
         className="links"
         onClick={() => setKitchen("eur")}
       >
         European
       </NavLink>
       <NavLink
-        to="/recipes"
+        to="/recipessam"
         className="links"
         onClick={() => setKitchen("sam")}
       >
         South-American
       </NavLink>
       <NavLink
-        to="/recipes"
+        to="/recipesind"
         className="links"
         onClick={() => setKitchen("ind")}
       >

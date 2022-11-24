@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-const RecipesAsi = ({ recipes, kitchen }) => {
+const RecipesEur = ({ recipes, kitchen }) => {
   return (
     <div className="App">
       <header className="App-header">
         <div className="container">
           {recipes &&
             recipes.map((recipe) =>
-              recipe.fields.category === "asi" ? (
+              recipe.fields.category === "eur" ? (
                 <div className="recip">
                   <Link to={`/recipesasi/${recipe.fields.id}`}>
                     <h3>{recipe.fields.title}</h3>
@@ -36,4 +36,4 @@ const RecipesAsi = ({ recipes, kitchen }) => {
   );
 };
 
-export default RecipesAsi;
+export default RecipesEur;
