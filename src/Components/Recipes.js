@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Starrating from "./Starrating";
 
 const Recipes = ({ recipes, setKitchen }) => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Recipes = ({ recipes, setKitchen }) => {
       setTimeout(!timeout);
       console.log("handletimeout ", timeout);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(interval);
   }
 
   handleTimeout();
@@ -83,15 +84,7 @@ const Recipes = ({ recipes, setKitchen }) => {
                         src={item?.fields.recipeImage.fields.file.url}
                       />
                     </div>
-
-                    <div className="star-rating">
-                      {[...new Array(item?.fields.rating)].map(() => {
-                        return <span className="star">&#9733;</span>;
-                      })}
-                      {[...new Array(5 - item?.fields.rating)].map(() => {
-                        return <span className="star">&#9734;</span>;
-                      })}
-                    </div>
+                    <Starrating stars={item?.fields.rating} total={5} />
                   </div>
                 )
               )
