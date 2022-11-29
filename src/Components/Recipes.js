@@ -74,8 +74,10 @@ const Recipes = ({ recipes, setKitchen }) => {
                         categoryHandler(item.fields?.category, item?.fields?.id)
                       }
                     >
-                      {item?.fields.title.length > 30 ? (
+                      {item?.fields.title.length < 20 ? (
                         <h5>{item?.fields.title}</h5>
+                      ) : item?.fields.title.length < 25 ? (
+                        <h3>{item?.fields.title}</h3>
                       ) : (
                         <h3>{item?.fields.title}</h3>
                       )}
