@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Starrating from "./Starrating";
 
 const RecipeDetail = ({ recipes, kitchen }) => {
   const { id } = useParams();
@@ -27,14 +28,7 @@ const RecipeDetail = ({ recipes, kitchen }) => {
               className="recipeImage"
               src={recipe.fields.recipeImage.fields.file.url}
             />
-            <div className="star-rating">
-              {[...Array(recipe.fields.rating)].map(() => {
-                return <span className="star">&#9733;</span>;
-              })}
-              {[...Array(5 - recipe.fields.rating)].map(() => {
-                return <span className="star">&#9734;</span>;
-              })}
-            </div>
+            <Starrating stars={recipe?.fields.rating} total={5} />
             <p>{recipe.fields.description}</p>
             <p>{recipe.fields.ingredients}</p>
             <p>{recipe.fields.instructionsnew}</p>
