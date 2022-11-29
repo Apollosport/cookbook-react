@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Starrating from "./Starrating";
 
 const RecipesAsi = ({ recipes, kitchen }) => {
   return (
@@ -20,14 +21,7 @@ const RecipesAsi = ({ recipes, kitchen }) => {
                     />
                   </Link>
 
-                  <div className="star-rating">
-                    {[...Array(recipe.fields.rating)].map(() => {
-                      return <span className="star">&#9733;</span>;
-                    })}
-                    {[...Array(5 - recipe.fields.rating)].map(() => {
-                      return <span className="star">&#9734;</span>;
-                    })}
-                  </div>
+                  <Starrating stars={recipe?.fields.rating} total={5} />
                 </div>
               ) : (
                 <></>
