@@ -11,23 +11,36 @@ import RecipesEur from "./Components/RecipesEur";
 import RecipesInd from "./Components/RecipesInd";
 import RecipesSam from "./Components/RecipesSam";
 import RecipeDetail from "./Components/RecipeDetail";
+import axios from "axios";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [kitchen, setKitchen] = useState("asi");
 
   useEffect(() => {
-    client
-      .getEntries()
-      .then((res) => setRecipes(res.items))
-      .catch((err) => console.log(err));
+    try {
+      client.getEntries().then((res) => setRecipes(res.items));
+    } catch (err) {
+      console.log(err.toJSON());
+    }
   }, []);
 
-  useEffect(() => {
-    console.log("useEffect ", kitchen);
-  }, [kitchen]);
+  /*   useEffect(() => {
+   try {
+    await client
+      .get()      
+      .then((response) => {
+        setRecipes(response.items);
+      });
+}
+catch(err) {
+  console.log(err.toJSON());
+}
+}, []); */
 
-  console.log(recipes);
+  useEffect(() => {
+    console.log("useEffect ", kitchen, " recipes ", recipes);
+  }, [kitchen, recipes]);
 
   return (
     <div className="App">
