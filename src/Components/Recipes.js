@@ -1,60 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Recipes = ({ recipes, setKitchen }) => {
   const navigate = useNavigate();
-
+  const [timeout, setTimeout] = useState(false);
+  let item = recipes[0];
   const getRandom = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const random = [
-    {
-      cat: "asi",
-      number: getRandom(1, 6),
-    },
-    {
-      cat: "eur",
-      number: getRandom(1, 6),
-    },
-    {
-      cat: "sam",
-      number: getRandom(1, 6),
-    },
-    {
-      cat: "ind",
-      number: getRandom(1, 6),
-    },
-  ];
+  const fillRandom = () => {
+    return [
+      {
+        cat: "asi",
+        number: getRandom(1, 6),
+      },
+      {
+        cat: "eur",
+        number: getRandom(1, 6),
+      },
+      {
+        cat: "sam",
+        number: getRandom(1, 6),
+      },
+      {
+        cat: "ind",
+        number: getRandom(1, 6),
+      },
+    ];
+  };
 
-  const categories = ["asi", "eur", "sam", "ind"];
-
-  /* {categories.map(
-    (cat) =>
-      recipes &&
-      recipes.fields.id &&
-      recipes.fields.category(
-        (item = recipes.find(
-          (recipe) =>
-            recipe.fields.id === rando && recipe.fields.category === cat
-        )())
-      )
-  )} */
-
-  let rando = getRandom(1, 6);
-  let item = recipes[0];
+  let random = fillRandom();
 
   const categoryHandler = (category, id) => {
     setKitchen(category);
     navigate(`/recipes${category}/${id}`);
   };
 
+  function handleTimeout() {
+    const interval = setInterval(() => {
+      random = fillRandom();
+      setTimeout(!timeout);
+      console.log("handletimeout ", timeout);
+    }, 5000);
+    return () => clearInterval(interval);
+  }
+
+  handleTimeout();
+
   useEffect(() => {
-    /* random1 = getRandom(1, 6);
-    random2 = getRandom(1, 6);
-    random3 = getRandom(1, 6);
-    random4 = getRandom(1, 6); */
-  }, []);
+    console.log("lets go");
+  }, [timeout]);
 
   return (
     <div className="App">
@@ -74,27 +70,28 @@ const Recipes = ({ recipes, setKitchen }) => {
                     <div
                       className="recipeDiv"
                       onClick={() =>
-                        /* navigate(
-                      `/recipes${recipe.fields.category}/${recipe.fields.id}`
-                    ) */
                         categoryHandler(item.fields?.category, item?.fields?.id)
                       }
                     >
-                      <h3>{item?.fields.title}</h3>
+                      {item?.fields.title.length > 30 ? (
+                        <h5>{item?.fields.title}</h5>
+                      ) : (
+                        <h3>{item?.fields.title}</h3>
+                      )}
                       <img
                         className="recipeImage"
                         src={item?.fields.recipeImage.fields.file.url}
                       />
                     </div>
 
-                    {/* <div className="star-rating">
-                {[...Array(item?.fields.rating)].map(() => {
-                  return <span className="star">&#9733;</span>;
-                })}
-                {[...Array(5 - item?.fields.rating)].map(() => {
-                  return <span className="star">&#9734;</span>;
-                })}
-              </div> */}
+                    <div className="star-rating">
+                      {[...new Array(item?.fields.rating)].map(() => {
+                        return <span className="star">&#9733;</span>;
+                      })}
+                      {[...new Array(5 - item?.fields.rating)].map(() => {
+                        return <span className="star">&#9734;</span>;
+                      })}
+                    </div>
                   </div>
                 )
               )
