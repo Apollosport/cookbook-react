@@ -44,7 +44,7 @@ const Recipes = ({ recipes, setKitchen }) => {
       setTimeout(!timeout);
       console.log("handletimeout ", timeout);
     }, 5000);
-    return () => clearTimeout(interval);
+    return () => clearInterval(interval);
   }
 
   handleTimeout();
@@ -75,11 +75,13 @@ const Recipes = ({ recipes, setKitchen }) => {
                       }
                     >
                       {item?.fields.title.length < 20 ? (
-                        <h5>{item?.fields.title}</h5>
+                        <h3>{item?.fields.title}</h3>
                       ) : item?.fields.title.length < 25 ? (
-                        <h3>{item?.fields.title}</h3>
+                        <h4>{item?.fields.title}</h4>
+                      ) : item?.fields.title.length < 30 ? (
+                        <h5>{item?.fields.title}</h5>
                       ) : (
-                        <h3>{item?.fields.title}</h3>
+                        <h6>{item?.fields.title}</h6>
                       )}
                       <img
                         className="recipeImage"
