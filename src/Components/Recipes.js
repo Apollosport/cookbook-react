@@ -2,12 +2,39 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Starrating from "./Starrating";
 
-const Recipes = ({ recipes, setKitchen }) => {
+const Recipes = ({ recipes, setKitchen, setRecipes }) => {
   const navigate = useNavigate();
   const [timeout, setTimeout] = useState(false);
+  const [item1, setItem1] = useState([
+    recipes[0],
+    recipes[1],
+    recipes[2],
+    recipes[3],
+  ]);
+  /* let item = [recipes[0],recipes[1],recipes[2],recipes[3]]; */
   let item = recipes[0];
+  const categories = ["asi", "eur", "sam", "ind"];
   const getRandom = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const fillItem = () => {
+    /*     setItem1(null); */
+    /* recipes &&
+      setItem1(
+        categories.map((element) => {
+          return [
+            ...recipes?.find(
+              (elem) =>
+                recipes.fields.category &&
+                recipes?.fields.category === element &&
+                recipes.fields.id &&
+                recipes?.fields.id === getRandom(1, 6)
+            ),
+          ];
+        })
+      ); */
+    /* [... {category: element, id : getRandom(1,6)}] */
   };
 
   const fillRandom = () => {
@@ -36,22 +63,34 @@ const Recipes = ({ recipes, setKitchen }) => {
   const categoryHandler = (category, id) => {
     setKitchen(category);
     navigate(`/recipes${category}/${id}`);
+    console.log("cat ", category, " id ", id);
   };
 
   function handleTimeout() {
     const interval = setInterval(() => {
       random = fillRandom();
       setTimeout(!timeout);
-      console.log("handletimeout ", timeout);
-    }, 5000);
+      // console.log("handletimeout ", timeout);
+      console.log("running");
+    }, 30000);
     return () => clearInterval(interval);
   }
 
-  handleTimeout();
+  /* useEffect(() => {
+    console.log("hello"); */
+  /* console.log("item1 ", item1); */
+  /* fillItem(); */
+  /*  }, [timeout]); */
 
   useEffect(() => {
-    console.log("lets go");
-  }, [timeout]);
+    console.log("Lets go ");
+    const interval = setInterval(() => {
+      setTimeout((prev) => !prev);
+      console.log("running");
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="App">
@@ -70,10 +109,17 @@ const Recipes = ({ recipes, setKitchen }) => {
                   <div className="recip">
                     <div
                       className="recipeDiv"
-                      onClick={() =>
-                        categoryHandler(item.fields?.category, item?.fields?.id)
+                      onClick={
+                        () =>
+                          categoryHandler(
+                            item?.fields.category,
+                            item?.fields.id
+                          )
+                        /* categoryHandler(elem?.cat, elem?.id) */
                       }
                     >
+                      {" "}
+                      {item?.fields.category} {item?.fields.id}
                       {item?.fields.title.length < 20 ? (
                         <h3>{item?.fields.title}</h3>
                       ) : item?.fields.title.length < 25 ? (
