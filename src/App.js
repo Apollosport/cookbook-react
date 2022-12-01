@@ -25,22 +25,43 @@ const App = () => {
     }
   }, []);
 
-  /*   useEffect(() => {
-   try {
-    await client
-      .get()      
-      .then((response) => {
-        setRecipes(response.items);
-      });
-}
-catch(err) {
-  console.log(err.toJSON());
-}
-}, []); */
+  /* useEffect(() => {
+    setRecipes(async () => {
+      client
+        .getEntries({
+          content_type: "blog",
+          select:
+            "fields.title, fields.id, fields.category, fields.recipeImage.fields.file.url, fields.rating, fields.description, fields.ingredients, ields.instructionsnew",
+          order: "fields.category, fields.id",
+        })
+
+        .then((response) => {
+          return response.items;
+        });
+    });
+  }, []); */
 
   useEffect(() => {
     console.log("useEffect ", kitchen, " recipes ", recipes);
+    console.log("whatup order ", recipes);
   }, [kitchen, recipes]);
+
+  /* useEffect(() => {
+    try {
+    client.getEntries(recipestemp)
+    .then(recipestemp => recipestemp.getEnvironment(environment))
+    .then(environment => environment.getEntry('1234567890'))
+    .then(entry => {
+        entry.fields.rating = {
+            'rating': 'Arizona'
+        }
+        return entry.update()
+    )
+      } catch(err) {
+        console.log(err.toJSON());
+      }
+    });
+  }, [recipes]); */
 
   return (
     <div className="App">
@@ -49,43 +70,103 @@ catch(err) {
         <Routes>
           <Route
             path="/"
-            element={<Recipes recipes={recipes} setKitchen={setKitchen} />}
+            element={
+              <Recipes
+                recipes={recipes}
+                setRecipes={setRecipes}
+                setKitchen={setKitchen}
+              />
+            }
           />
           <Route
             path="/recipes"
-            element={<Recipes recipes={recipes} setKitchen={setKitchen} />}
+            element={
+              <Recipes
+                recipes={recipes}
+                setRecipes={setRecipes}
+                setKitchen={setKitchen}
+              />
+            }
           />
           <Route
             path="/recipesasi"
-            element={<RecipesAsi recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipesAsi
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipesasi/:id"
-            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipeDetail
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipeseur"
-            element={<RecipesEur recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipesEur
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipeseur/:id"
-            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipeDetail
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipesind"
-            element={<RecipesInd recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipesInd
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipesind/:id"
-            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipeDetail
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipessam"
-            element={<RecipesSam recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipesSam
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route
             path="/recipessam/:id"
-            element={<RecipeDetail recipes={recipes} kitchen={kitchen} />}
+            element={
+              <RecipeDetail
+                recipes={recipes}
+                setRecipes={setRecipes}
+                kitchen={kitchen}
+              />
+            }
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
