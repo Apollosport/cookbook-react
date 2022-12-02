@@ -10,6 +10,18 @@ const Starrating = ({ stars, total }) => {
     setHover(null);
   }, [stars]);
 
+  /* useEffect(() => {
+    client.getSpace(spaceId)
+    .then(space => space.getEnvironment(environment))
+    .then(environment => environment.getEntry('1234567890'))
+    .then(entry => {
+        entry.fields.state = {
+            'en-US': 'Arizona'
+        }
+        return entry.update()
+    });
+  }, [rating]); */
+
   return (
     <div className="star-rating">
       {[...Array(total)].map((star, i) => {

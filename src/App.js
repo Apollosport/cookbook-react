@@ -17,12 +17,21 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [kitchen, setKitchen] = useState("asi");
 
-  useEffect(() => {
+  /* useEffect(() => {
     try {
       client.getEntries().then((res) => setRecipes(res.items));
     } catch (err) {
       console.log(err.toJSON());
     }
+  }, []); */
+
+  const getFetch = async () => {
+    const allRecipes = await client.getEntries();
+    setRecipes(allRecipes.items);
+  };
+
+  useEffect(() => {
+    getFetch();
   }, []);
 
   /* useEffect(() => {

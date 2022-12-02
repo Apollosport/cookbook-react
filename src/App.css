@@ -150,7 +150,7 @@ a.detailLinks:visited {
 }
 
 a.detailLinks:hover {
-  color: lightgray;
+  color: rgb(0, 128, 128);
   text-decoration: none;
 }
 
