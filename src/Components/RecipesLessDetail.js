@@ -1,6 +1,7 @@
 import Starrating from "./Starrating";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 const RecipesLessDetail = ({ recipes }) => {
   return (
