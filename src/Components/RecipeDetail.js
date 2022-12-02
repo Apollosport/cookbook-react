@@ -15,7 +15,7 @@ const RecipeDetail = ({ recipes, kitchen }) => {
     window.scroll(0, 0);
   }, []);
 
-  console.log("kitchen ", kitchen);
+  console.log("recipes ", recipes);
   console.log("category ", recipe.fields.category);
 
   return (

@@ -6,8 +6,8 @@ const RecipesLessDetail = ({ recipes }) => {
   return (
     <div className="container">
       {recipes &&
-        recipes.map((recipe) => (
-          <div className="recip">
+        recipes.map((recipe, index) => (
+          <div className="recip" key={index}>
             <Link
               to={`/recipes${recipe.fields.category}/${recipe.fields.id}`}
               className="detailLinks"
@@ -26,7 +26,6 @@ const RecipesLessDetail = ({ recipes }) => {
                 src={recipe.fields.recipeImage.fields.file.url}
               />
             </Link>
-
             <Starrating stars={recipe?.fields.rating} total={5} />
           </div>
         ))}
