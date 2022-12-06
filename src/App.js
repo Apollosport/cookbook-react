@@ -141,7 +141,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
-                  setSearchedRecipe={setSearchedRecipe}
+                  setInput={setInput}
                 />
               }
             />
@@ -162,7 +162,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
-                  setSearchedRecipe={setSearchedRecipe}
+                  setInput={setInput}
                 />
               }
             />
@@ -183,7 +183,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
-                  setSearchedRecipe={setSearchedRecipe}
+                  setInput={setInput}
                 />
               }
             />
@@ -204,7 +204,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
-                  setSearchedRecipe={setSearchedRecipe}
+                  setInput={setInput}
                 />
               }
             />

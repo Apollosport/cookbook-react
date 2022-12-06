@@ -2,7 +2,7 @@ import RecipesLessDetail from "./RecipesLessDetail";
 import { useEffect, useState } from "react";
 import Searchresults from "./Searchresults";
 
-const RecipesAsi = ({ recipes, searchedRecipe, setSearchedRecipe }) => {
+const RecipesAsi = ({ recipes, searchedRecipe, setInput }) => {
   const [catRecipes, setCatRecipes] = useState([]);
 
   const findRecipes = () => {
@@ -17,8 +17,7 @@ const RecipesAsi = ({ recipes, searchedRecipe, setSearchedRecipe }) => {
   }, [recipes]);
 
   useEffect(() => {
-    setSearchedRecipe([]);
-    console.log("reset");
+    setInput("");
   }, []);
 
   return (
