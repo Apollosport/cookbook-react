@@ -37,12 +37,14 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
     setRandomRecipes(listRecipes);
   }; */
   const findRecipes = () => {
-    /* setRandomRecipes(null); */
+    setRandomRecipes([]);
     i = getRandom(1, 10);
     categories.map((cat) => {
-      /* let listRecipes = recipes ?  : []; */
       console.log(cat);
-      setRandomRecipes((prev) => [...prev, recipes[getRandom(0, 39)]]);
+      setRandomRecipes((prev) => [
+        ...prev,
+        recipes[getRandom(0, recipes.length - 1)],
+      ]);
     });
   };
 
@@ -54,7 +56,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
     findRecipes();
   }, []);
 
-  /* useEffect(() => {
+  useEffect(() => {
     console.log("Lets go ");
     const interval = setInterval(() => {
       setTimeout(() => !timeout);
@@ -62,7 +64,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
       console.log("timeout ", timeout, " randomarray ", randomRecipes);
     }, 10000);
     return () => clearInterval(interval);
-  }, []); */
+  }, []);
 
   return (
     <div className="App">
