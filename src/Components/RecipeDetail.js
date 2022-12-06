@@ -8,7 +8,8 @@ const RecipeDetail = ({ recipes, kitchen }) => {
 
   const recipe = recipes.find(
     (element) =>
-      element.fields.id === Number(id) && element.fields.category === kitchen
+      element.fields.id ===
+      Number(id) /* && element.fields.category === kitchen */
   );
 
   useEffect(() => {

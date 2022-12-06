@@ -32,7 +32,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
   const findRecipes = () => {
     i = getRandom(1, 10);
     const listRecipes = recipes
-      ? recipes.filter((recipe) => recipe.fields.id === i)
+      ? recipes?.filter((recipe) => recipe.fields.id === i)
       : null;
     setRandomRecipes(listRecipes);
     /* i > 9 ? (i = 1) : i++; */
@@ -42,7 +42,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
     findRecipes();
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log("Lets go ");
     const interval = setInterval(() => {
       setTimeout(() => !timeout);
@@ -50,7 +50,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
       console.log("timeout ", timeout, " randomarray ", randomRecipes);
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, []); */
 
   return (
     <div className="App">

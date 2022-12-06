@@ -9,12 +9,48 @@ import flag5 from "./Mexico.png";
 import flag6 from "./american.webp";
 import flag7 from "./japan.webp";
 
-const Navbar = ({ setKitchen }) => {
+const Navbar = ({ setKitchen, recipes, searchedRecipe, setSearchedRecipe }) => {
   const [input, setInput] = useState("");
+  /* const [searchedRecipe, setSearchedRecipe] = useState([]); */
 
   const changeHandler = (e) => {
     setInput(e.target.value);
   };
+  // const result = recipes?.filter(
+  //   (recipe) => recipe.field.title.toLowerCase() === input.toLowerCase()
+  // );
+  // const result = recipes.filter((recipe) => {
+  //   // console.log("result", recipe);
+  //   // if (input === "") {
+  //   //   return "Type";
+  //   // } else {
+  //   // setSearchedRecipe(recipe.fields.title.toLowerCase().includes(input));
+  //   return recipe.fields.title.toLowerCase().includes(input);
+  //   // }
+  // });
+
+  function findRecipe() {
+    console.log("findrecipes ", recipes);
+    if (recipes) {
+      const result = input
+        ? recipes.filter((recipe) =>
+            recipe.fields.title.toLowerCase().includes(input)
+          )
+        : [];
+      setSearchedRecipe(result);
+      console.log("timon", searchedRecipe);
+    }
+  }
+
+  useEffect(() => {
+    findRecipe();
+  }, [input]);
+
+  useEffect(() => {
+    console.log("etKItchen", recipes);
+  }, []);
+
+  console.log("searchedRecipe", searchedRecipe);
 
   return (
     <div
@@ -67,6 +103,17 @@ const Navbar = ({ setKitchen }) => {
         onChange={changeHandler}
         value={input}
       />
+      <div>
+        {searchedRecipe?.map((recipe) => (
+          <div>
+            {" "}
+            <Link to={`/${recipe.fields.category}/${recipe.fields.id}`}>
+              {" "}
+              {recipe?.fields?.title}{" "}
+            </Link>{" "}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

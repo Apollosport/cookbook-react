@@ -11,11 +11,14 @@ import RecipesEur from "./Components/RecipesEur";
 import RecipesInd from "./Components/RecipesInd";
 import RecipesSam from "./Components/RecipesSam";
 import RecipeDetail from "./Components/RecipeDetail";
+import RecipesLessDetail from "./Components/RecipesLessDetail";
 import axios from "axios";
+import Searchresults from "./Components/Searchresults";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [kitchen, setKitchen] = useState("asi");
+  const [searchedRecipe, setSearchedRecipe] = useState([]);
 
   /* useEffect(() => {
     try {
@@ -33,6 +36,10 @@ const App = () => {
   useEffect(() => {
     getFetch();
   }, []);
+
+  useEffect(() => {
+    console.log("searchedRecipe ", searchedRecipe);
+  }, [searchedRecipe]);
 
   /* useEffect(() => {
     setRecipes(async () => {
@@ -75,18 +82,37 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar setKitchen={setKitchen} />
+        <Navbar
+          setKitchen={setKitchen}
+          recipes={recipes}
+          searchedRecipe={searchedRecipe}
+          setSearchedRecipe={setSearchedRecipe}
+        />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Recipes
-                recipes={recipes}
-                setRecipes={setRecipes}
-                setKitchen={setKitchen}
-              />
-            }
-          />
+          {searchedRecipe.length === 0 ? (
+            <Route
+              path="/"
+              element={
+                <Recipes
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  setKitchen={setKitchen}
+                />
+              }
+            />
+          ) : (
+            <Route
+              path="/"
+              element={
+                <Searchresults
+                  recipes={searchedRecipe}
+                  setRecipes={setRecipes}
+                  setKitchen={setKitchen}
+                />
+              }
+            />
+          )}
+
           <Route
             path="/recipes"
             element={
@@ -177,6 +203,7 @@ const App = () => {
               />
             }
           />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
