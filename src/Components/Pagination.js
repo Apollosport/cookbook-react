@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";
 
@@ -58,3 +58,4 @@ ReactDOM.render(
   <PaginatedItems itemsPerPage={4} />,
   document.getElementById("container")
 );
+ */

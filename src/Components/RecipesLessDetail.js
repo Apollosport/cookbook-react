@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 
 const RecipesLessDetail = ({ recipes }) => {
   return (
-    <div className="container">
+    <div id="container" className="container">
       {recipes?.map((recipe, index) => (
         <div className="recip" key={index}>
           <Link
