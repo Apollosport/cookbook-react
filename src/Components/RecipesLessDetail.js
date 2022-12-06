@@ -8,7 +8,6 @@ const RecipesLessDetail = ({ recipes }) => {
     <div className="container">
       {recipes?.map((recipe, index) => (
         <div className="recip" key={index}>
-          {recipe.fields.category} {recipe.fields.id}
           <Link
             to={`/recipes${recipe.fields.category}/${recipe.fields.id}`}
             className="detailLinks"

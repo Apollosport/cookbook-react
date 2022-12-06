@@ -5,7 +5,7 @@ import RecipesLessDetail from "./RecipesLessDetail";
 const Recipes = ({ recipes, setKitchen, setRecipes }) => {
   const navigate = useNavigate();
   const [timeout, setTimeout] = useState(false);
-  const [randomRecipes, setRandomRecipes] = useState(null);
+  const [randomRecipes, setRandomRecipes] = useState([]);
   let i = 1;
   let j = 1;
 
@@ -29,14 +29,26 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
     console.log("this is running ", listRecipes, " & i ", i);
   }; */
 
-  const findRecipes = () => {
+  /*   const findRecipes = () => {
     i = getRandom(1, 10);
     const listRecipes = recipes
       ? recipes?.filter((recipe) => recipe.fields.id === i)
       : null;
     setRandomRecipes(listRecipes);
-    /* i > 9 ? (i = 1) : i++; */
+  }; */
+  const findRecipes = () => {
+    /* setRandomRecipes(null); */
+    i = getRandom(1, 10);
+    categories.map((cat) => {
+      /* let listRecipes = recipes ?  : []; */
+      console.log(cat);
+      setRandomRecipes((prev) => [...prev, recipes[getRandom(0, 39)]]);
+    });
   };
+
+  useEffect(() => {
+    console.log(randomRecipes);
+  }, [randomRecipes]);
 
   useEffect(() => {
     findRecipes();

@@ -24,10 +24,7 @@ const RecipeDetail = ({ recipes, kitchen }) => {
       <div className="RecipeDetails">
         <div className="container">
           <div className="recip">
-            <h1>
-              {recipe.fields.title}
-              {recipe.fields.category} {recipe.fields.id}
-            </h1>
+            <h1>{recipe.fields.title}</h1>
             <img
               className="recipeImage"
               src={recipe.fields.recipeImage.fields.file.url}
