@@ -1,16 +1,15 @@
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import image from "./Lets-Cook-Logo.webp";
-import flag1 from "./french1.jpg";
-import flag2 from "./french2.webp";
-import flag3 from "./india.png";
-import flag4 from "./italy.png";
-import flag5 from "./Mexico.png";
-import flag6 from "./american.webp";
-import flag7 from "./japan.webp";
 
-const Navbar = ({ setKitchen, recipes, searchedRecipe, setSearchedRecipe }) => {
-  const [input, setInput] = useState("");
+const Navbar = ({
+  recipes,
+  searchedRecipe,
+  setSearchedRecipe,
+  input,
+  setInput,
+}) => {
+  /* const [input, setInput] = useState(""); */
   /* const [searchedRecipe, setSearchedRecipe] = useState([]); */
 
   const changeHandler = (e) => {
@@ -44,54 +43,45 @@ const Navbar = ({ setKitchen, recipes, searchedRecipe, setSearchedRecipe }) => {
 
   useEffect(() => {
     findRecipe();
+    console.log("there is input ", input);
   }, [input]);
-
+  /* 
   useEffect(() => {
     console.log("etKItchen", recipes);
-  }, []);
+  }, []); */
 
   console.log("searchedRecipe", searchedRecipe);
 
   return (
-    <div
-      className="navbar"
-      /* style={{
-        backgroundImage: `url(${flag5})`,
-        backgroundSize: "cover",
-
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }} */
-    >
-      {/*       <img src={image} alt="Let's Cook!" className={"imgNavbar"} /> */}
+    <div className="navbar">
       <Link to="/" className="logo">
         <img src={image} alt="Let's Cook!" className={"imgNavbar"} />
       </Link>
       <NavLink
         to="/recipesasi"
         className="links"
-        onClick={() => setKitchen("asi")}
+        /*         onClick={() => setKitchen("asi")} */
       >
         Asian
       </NavLink>
       <NavLink
         to="/recipeseur"
         className="links"
-        onClick={() => setKitchen("eur")}
+        /*         onClick={() => setKitchen("eur")} */
       >
         European
       </NavLink>
       <NavLink
         to="/recipessam"
         className="links"
-        onClick={() => setKitchen("sam")}
+        /*         onClick={() => setKitchen("sam")} */
       >
         South-American
       </NavLink>
       <NavLink
         to="/recipesind"
         className="links"
-        onClick={() => setKitchen("ind")}
+        /*         onClick={() => setKitchen("ind")} */
       >
         Indian
       </NavLink>
@@ -103,17 +93,6 @@ const Navbar = ({ setKitchen, recipes, searchedRecipe, setSearchedRecipe }) => {
         onChange={changeHandler}
         value={input}
       />
-      <div>
-        {searchedRecipe?.map((recipe) => (
-          <div>
-            {" "}
-            <Link to={`/${recipe.fields.category}/${recipe.fields.id}`}>
-              {" "}
-              {recipe?.fields?.title}{" "}
-            </Link>{" "}
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

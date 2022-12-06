@@ -1,7 +1,8 @@
 import RecipesLessDetail from "./RecipesLessDetail";
 import { useEffect, useState } from "react";
+import Searchresults from "./Searchresults";
 
-const RecipesEur = ({ recipes, kitchen }) => {
+const RecipesEur = ({ recipes, searchedRecipe, setSearchedRecipe }) => {
   const [catRecipes, setCatRecipes] = useState([]);
 
   const findRecipes = () => {
@@ -15,9 +16,17 @@ const RecipesEur = ({ recipes, kitchen }) => {
     findRecipes();
   }, [recipes]);
 
+  useEffect(() => {
+    setSearchedRecipe([]);
+  }, []);
+
   return (
     <div className="App">
-      <RecipesLessDetail recipes={catRecipes} />
+      {searchedRecipe.length === 0 ? (
+        <RecipesLessDetail recipes={catRecipes} />
+      ) : (
+        <Searchresults recipes={searchedRecipe} />
+      )}
     </div>
   );
 };

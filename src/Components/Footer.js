@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import image from "./image.jpg";
+import image from "./cat.webp";
 
 export default function Footer() {
   const [see, setsee] = useState(false);

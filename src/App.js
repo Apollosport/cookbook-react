@@ -14,11 +14,14 @@ import RecipeDetail from "./Components/RecipeDetail";
 import RecipesLessDetail from "./Components/RecipesLessDetail";
 import axios from "axios";
 import Searchresults from "./Components/Searchresults";
+import GridLoader from "react-spinners/ClipLoader";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [kitchen, setKitchen] = useState("asi");
+  const [input, setInput] = useState("");
   const [searchedRecipe, setSearchedRecipe] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   /* useEffect(() => {
     try {
@@ -34,6 +37,11 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log("loading: ", loading);
+  }, [loading]);
+
+  useEffect(() => {
+    setLoading((prev) => !prev);
     getFetch();
   }, []);
 
@@ -60,6 +68,7 @@ const App = () => {
   useEffect(() => {
     console.log("useEffect ", kitchen, " recipes ", recipes);
     console.log("whatup order ", recipes);
+    setLoading((prev) => !prev);
   }, [kitchen, recipes]);
 
   /* useEffect(() => {
@@ -83,129 +92,138 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <Navbar
-          setKitchen={setKitchen}
           recipes={recipes}
           searchedRecipe={searchedRecipe}
           setSearchedRecipe={setSearchedRecipe}
+          input={input}
+          setInput={setInput}
         />
-        <Routes>
-          {searchedRecipe.length === 0 ? (
+        {loading ? (
+          <Routes>
+            {searchedRecipe.length === 0 ? (
+              <Route
+                path="/"
+                element={
+                  <Recipes
+                    recipes={recipes}
+                    setRecipes={setRecipes}
+                    setKitchen={setKitchen}
+                  />
+                }
+              />
+            ) : (
+              <Route
+                path="/"
+                element={
+                  <Searchresults
+                    recipes={searchedRecipe}
+                    setRecipes={setRecipes}
+                    setKitchen={setKitchen}
+                  />
+                }
+              />
+            )}
+
             <Route
-              path="/"
+              path="/recipes"
               element={
                 <Recipes
                   recipes={recipes}
                   setRecipes={setRecipes}
-                  setKitchen={setKitchen}
+                  searchedRecipe={searchedRecipe}
                 />
               }
             />
-          ) : (
             <Route
-              path="/"
+              path="/recipesasi"
               element={
-                <Searchresults
-                  recipes={searchedRecipe}
+                <RecipesAsi
+                  recipes={recipes}
                   setRecipes={setRecipes}
-                  setKitchen={setKitchen}
+                  searchedRecipe={searchedRecipe}
+                  setSearchedRecipe={setSearchedRecipe}
                 />
               }
             />
-          )}
+            <Route
+              path="/recipesasi/:id"
+              element={
+                <RecipeDetail
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipeseur"
+              element={
+                <RecipesEur
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                  setSearchedRecipe={setSearchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipeseur/:id"
+              element={
+                <RecipeDetail
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipesind"
+              element={
+                <RecipesInd
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                  setSearchedRecipe={setSearchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipesind/:id"
+              element={
+                <RecipeDetail
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipessam"
+              element={
+                <RecipesSam
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                  setSearchedRecipe={setSearchedRecipe}
+                />
+              }
+            />
+            <Route
+              path="/recipessam/:id"
+              element={
+                <RecipeDetail
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  searchedRecipe={searchedRecipe}
+                />
+              }
+            />
 
-          <Route
-            path="/recipes"
-            element={
-              <Recipes
-                recipes={recipes}
-                setRecipes={setRecipes}
-                setKitchen={setKitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipesasi"
-            element={
-              <RecipesAsi
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipesasi/:id"
-            element={
-              <RecipeDetail
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipeseur"
-            element={
-              <RecipesEur
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipeseur/:id"
-            element={
-              <RecipeDetail
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipesind"
-            element={
-              <RecipesInd
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipesind/:id"
-            element={
-              <RecipeDetail
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipessam"
-            element={
-              <RecipesSam
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-          <Route
-            path="/recipessam/:id"
-            element={
-              <RecipeDetail
-                recipes={recipes}
-                setRecipes={setRecipes}
-                kitchen={kitchen}
-              />
-            }
-          />
-
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        ) : (
+          <GridLoader />
+        )}
         <Footer />
       </header>
     </div>
