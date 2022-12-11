@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Starrating from "./Starrating";
 
-const RecipeDetail = ({ recipes, kitchen }) => {
+const RecipeDetail = ({ recipes, kitchen, dark }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const RecipeDetail = ({ recipes, kitchen }) => {
     <div>
       <div className="RecipeDetails">
         <div className="container">
-          <div className="recip">
+          <div className={`${dark ? "darktext" : "lighttext"} recip`}>
             <h1>{recipe.fields.title}</h1>
             <img
               className="recipeImage"

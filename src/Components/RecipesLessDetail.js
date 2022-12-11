@@ -1,16 +1,14 @@
 import Starrating from "./Starrating";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ReactPaginate from "react-paginate";
 
-const RecipesLessDetail = ({ recipes }) => {
+const RecipesLessDetail = ({ recipes, dark }) => {
   return (
     <div id="container" className="container">
       {recipes?.map((recipe, index) => (
         <div className="recip" key={index}>
           <Link
             to={`/recipes${recipe.fields.category}/${recipe.fields.id}`}
-            className="detailLinks"
+            className={`${dark ? "detailLinksd" : "detailLinksl"} detailLinks`}
           >
             {recipe?.fields.title.length < 20 ? (
               <h3>{recipe?.fields.title}</h3>
