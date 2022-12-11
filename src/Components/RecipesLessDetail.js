@@ -8,7 +8,9 @@ const RecipesLessDetail = ({ recipes, dark }) => {
         <div className="recip" key={index}>
           <Link
             to={`/recipes${recipe.fields.category}/${recipe.fields.id}`}
-            className={`${dark ? "detailLinksd" : "detailLinksl"} detailLinks`}
+            className={`${
+              dark ? "detailLinksd" : "detailLinksl"
+            } detailLinksafd`}
           >
             {recipe?.fields.title.length < 20 ? (
               <h3>{recipe?.fields.title}</h3>
