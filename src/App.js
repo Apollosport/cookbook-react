@@ -11,17 +11,16 @@ import RecipesEur from "./Components/RecipesEur";
 import RecipesInd from "./Components/RecipesInd";
 import RecipesSam from "./Components/RecipesSam";
 import RecipeDetail from "./Components/RecipeDetail";
-import RecipesLessDetail from "./Components/RecipesLessDetail";
-import axios from "axios";
 import Searchresults from "./Components/Searchresults";
 import GridLoader from "react-spinners/ClipLoader";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
-  const [kitchen, setKitchen] = useState("asi");
+  const [kitchen, setKitchen] = useState(null);
   const [input, setInput] = useState("");
   const [searchedRecipe, setSearchedRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [dark, setDark] = useState(true);
 
   /* useEffect(() => {
     try {
@@ -44,6 +43,10 @@ const App = () => {
     setLoading((prev) => !prev);
     getFetch();
   }, []);
+
+  useEffect(() => {
+    console.log("dark = ", dark);
+  }, [dark]);
 
   useEffect(() => {
     console.log("searchedRecipe ", searchedRecipe);
@@ -90,13 +93,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className={`${dark ? "dark" : "light"} App-header`}>
         <Navbar
           recipes={recipes}
           searchedRecipe={searchedRecipe}
           setSearchedRecipe={setSearchedRecipe}
           input={input}
           setInput={setInput}
+          dark={dark}
         />
         {loading ? (
           <Routes>
@@ -108,6 +112,7 @@ const App = () => {
                     recipes={recipes}
                     setRecipes={setRecipes}
                     setKitchen={setKitchen}
+                    dark={dark}
                   />
                 }
               />
@@ -131,6 +136,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
+                  dark={dark}
                 />
               }
             />
@@ -142,6 +148,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   setInput={setInput}
+                  dark={dark}
                 />
               }
             />
@@ -152,6 +159,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
+                  dark={dark}
                 />
               }
             />
@@ -163,6 +171,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   setInput={setInput}
+                  dark={dark}
                 />
               }
             />
@@ -173,6 +182,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
+                  dark={dark}
                 />
               }
             />
@@ -184,6 +194,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   setInput={setInput}
+                  dark={dark}
                 />
               }
             />
@@ -194,6 +205,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
+                  dark={dark}
                 />
               }
             />
@@ -205,6 +217,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   setInput={setInput}
+                  dark={dark}
                 />
               }
             />
@@ -215,6 +228,7 @@ const App = () => {
                   recipes={recipes}
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
+                  dark={dark}
                 />
               }
             />
@@ -224,7 +238,7 @@ const App = () => {
         ) : (
           <GridLoader />
         )}
-        <Footer />
+        <Footer setDark={setDark} />
       </header>
     </div>
   );

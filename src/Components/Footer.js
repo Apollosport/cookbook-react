@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import image from "./cat.webp";
 
-export default function Footer() {
+export default function Footer({ setDark }) {
   const [see, setsee] = useState(false);
   function togglePic() {
     setsee((e) => !e);
@@ -15,10 +15,21 @@ export default function Footer() {
       </p>
       <img
         src={image}
-        alt="May the 1st be with you!"
-        onClick={togglePic}
+        alt="Who is there?!"
+        onClick={() => togglePic()}
         className={`${see ? "visible" : "invisible"} img`}
       />
+      <div id="toggledark">
+        <p>Light</p>
+        <label class="switch">
+          <input id="dark" type="checkbox" />
+          <span
+            onClick={() => setDark((prev) => !prev)}
+            className="slider"
+          ></span>
+        </label>
+        <p>Dark</p>
+      </div>
     </div>
   );
 }

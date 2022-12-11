@@ -2,7 +2,7 @@ import RecipesLessDetail from "./RecipesLessDetail";
 import { useEffect, useState } from "react";
 import Searchresults from "./Searchresults";
 
-const RecipesAsi = ({ recipes, searchedRecipe, setInput }) => {
+const RecipesAsi = ({ recipes, searchedRecipe, setInput, dark }) => {
   const [catRecipes, setCatRecipes] = useState([]);
 
   const findRecipes = () => {
@@ -23,9 +23,9 @@ const RecipesAsi = ({ recipes, searchedRecipe, setInput }) => {
   return (
     <div className="App">
       {searchedRecipe.length === 0 ? (
-        <RecipesLessDetail recipes={catRecipes} />
+        <RecipesLessDetail recipes={catRecipes} dark={dark} />
       ) : (
-        <Searchresults recipes={searchedRecipe} />
+        <Searchresults recipes={searchedRecipe} dark={dark} />
       )}
     </div>
   );

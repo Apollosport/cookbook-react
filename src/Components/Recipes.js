@@ -2,12 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecipesLessDetail from "./RecipesLessDetail";
 
-const Recipes = ({ recipes, setKitchen, setRecipes }) => {
+const Recipes = ({ recipes, setKitchen, setRecipes, dark }) => {
   const navigate = useNavigate();
   const [timeout, setTimeout] = useState(false);
   const [randomRecipes, setRandomRecipes] = useState([]);
   let i = 1;
-  let j = 1;
 
   const categories = ["asi", "eur", "sam", "ind"];
 
@@ -15,27 +14,6 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  /* const findRecipes = () => {
-    const listRecipes = categories.map((cat) => {
-      recipes &&
-        recipes.find(
-          (recipe) =>
-            /* recipe.fields?.category === "eur"  &&  recipe.fields.id === i
-        );
-       return [...listRecipes, recipes[i]];
-    });
-    
-    setRandomRecipes(listRecipes);
-    console.log("this is running ", listRecipes, " & i ", i);
-  }; */
-
-  /*   const findRecipes = () => {
-    i = getRandom(1, 10);
-    const listRecipes = recipes
-      ? recipes?.filter((recipe) => recipe.fields.id === i)
-      : null;
-    setRandomRecipes(listRecipes);
-  }; */
   const findRecipes = () => {
     setRandomRecipes([]);
     i = getRandom(1, 10);
@@ -68,7 +46,9 @@ const Recipes = ({ recipes, setKitchen, setRecipes }) => {
 
   return (
     <div className="App">
-      {randomRecipes && <RecipesLessDetail recipes={randomRecipes} />}
+      {randomRecipes && (
+        <RecipesLessDetail recipes={randomRecipes} dark={dark} />
+      )}
     </div>
   );
 };
