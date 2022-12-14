@@ -17,12 +17,10 @@ const Navbar = ({
     console.log("findrecipes ", recipes);
     if (recipes) {
       const result = input
-        ? recipes.filter((recipe) =>
-            recipe.fields.title.toLowerCase().includes(input)
-          )
+        ? recipes.filter((recipe) => recipe.title.toLowerCase().includes(input))
         : [];
       setSearchedRecipe(result);
-      console.log("timon", searchedRecipe);
+      /* console.log("timon", searchedRecipe); */
     }
   };
 
@@ -46,6 +44,9 @@ const Navbar = ({
       </NavLink>
       <NavLink to="/recipesind" className="links">
         Indian
+      </NavLink>
+      <NavLink to="/postrecipe" className="links">
+        Send Recipe
       </NavLink>
       <input
         className="search-input"

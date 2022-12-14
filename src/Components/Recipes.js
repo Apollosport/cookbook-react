@@ -26,9 +26,9 @@ const Recipes = ({ recipes, setKitchen, setRecipes, dark }) => {
     });
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(randomRecipes);
-  }, [randomRecipes]);
+  }, [randomRecipes]); */
 
   useEffect(() => {
     findRecipes();
@@ -39,7 +39,7 @@ const Recipes = ({ recipes, setKitchen, setRecipes, dark }) => {
     const interval = setInterval(() => {
       setTimeout(() => !timeout);
       findRecipes();
-      console.log("timeout ", timeout, " randomarray ", randomRecipes);
+      /*       console.log("timeout ", timeout, " randomarray ", randomRecipes); */
     }, 10000);
     return () => clearInterval(interval);
   }, []);

@@ -7,7 +7,7 @@ const RecipesInd = ({ recipes, searchedRecipe, setInput, dark }) => {
 
   const findRecipes = () => {
     const listRecipes = recipes
-      ? recipes.filter((recipe) => recipe.fields.category === "ind")
+      ? recipes.filter((recipe) => recipe.category === "ind")
       : null;
     setCatRecipes(listRecipes);
   };

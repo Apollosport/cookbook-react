@@ -7,7 +7,7 @@ const RecipesAsi = ({ recipes, searchedRecipe, setInput, dark }) => {
 
   const findRecipes = () => {
     const listRecipes = recipes
-      ? recipes.filter((recipe) => recipe.fields.category === "asi")
+      ? recipes.filter((recipe) => recipe.category === "asi")
       : null;
     setCatRecipes(listRecipes);
   };

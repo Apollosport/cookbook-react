@@ -7,24 +7,26 @@ const RecipesLessDetail = ({ recipes, dark }) => {
       {recipes?.map((recipe, index) => (
         <div className="recip" key={index}>
           <Link
-            to={`/recipes${recipe.fields.category}/${recipe.fields.id}`}
+            to={`/recipes${recipe.category}/${recipe.id}`}
             className={`${dark ? "detailLinksd" : "detailLinksl"} detailLinks`}
           >
-            {recipe?.fields.title.length < 20 ? (
-              <h3>{recipe?.fields.title}</h3>
-            ) : recipe?.fields.title.length < 25 ? (
-              <h4>{recipe?.fields.title}</h4>
-            ) : recipe?.fields.title.length < 30 ? (
-              <h5>{recipe?.fields.title}</h5>
+            {recipe?.title.length < 20 ? (
+              <h3>{recipe?.title}</h3>
+            ) : recipe?.title.length < 25 ? (
+              <h4>{recipe?.title}</h4>
+            ) : recipe?.title.length < 30 ? (
+              <h5>{recipe?.title}</h5>
             ) : (
-              <h6>{recipe?.fields.title}</h6>
+              <h6>{recipe?.title}</h6>
             )}
             <img
               className="recipeImage"
-              src={recipe.fields.recipeImage.fields.file.url}
+              src={`http://${recipe.recipeimage}`}
+              alt={`${recipe.title} Picture`}
             />
+            <p>{recipe.id}</p>
           </Link>
-          <Starrating stars={recipe?.fields.rating} total={5} />
+          <Starrating stars={recipe?.rating} total={5} />
         </div>
       ))}
     </div>

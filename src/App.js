@@ -13,6 +13,7 @@ import RecipesSam from "./Components/RecipesSam";
 import RecipeDetail from "./Components/RecipeDetail";
 import Searchresults from "./Components/Searchresults";
 import GridLoader from "react-spinners/ClipLoader";
+import Postrecipe from "./Components/Postrecipe";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
@@ -21,6 +22,7 @@ const App = () => {
   const [searchedRecipe, setSearchedRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(true);
+  const server = "http://localhost:8080";
 
   /* useEffect(() => {
     try {
@@ -30,18 +32,42 @@ const App = () => {
     }
   }, []); */
 
-  const getFetch = async () => {
+  /* const getFetch = async () => {
     const allRecipes = await client.getEntries();
     setRecipes(allRecipes.items);
+  }; */
+
+  /* const getFetch = async () => {
+    const allRecipes = await server.get();
+    setRecipes(allRecipes.items);
+  }; */
+
+  const getData = () => {
+    fetch("http://localhost:8080")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then((data) => {
+        setRecipes(data);
+        console.log(data);
+      });
   };
 
+  /* .then((res) => {
+        setRecipes(res);
+      });
+  }; */
+
   useEffect(() => {
-    console.log("loading: ", loading);
-  }, [loading]);
+    console.log("fetch stuff ", recipes);
+  }, [recipes]);
 
   useEffect(() => {
     setLoading((prev) => !prev);
-    getFetch();
+    getData();
   }, []);
 
   useEffect(() => {
@@ -52,8 +78,7 @@ const App = () => {
     console.log("searchedRecipe ", searchedRecipe);
   }, [searchedRecipe]);
 
-  /* useEffect(() => {
-    setRecipes(async () => {
+  /* setAltRecipes(async () => {
       client
         .getEntries({
           content_type: "blog",
@@ -63,14 +88,13 @@ const App = () => {
         })
 
         .then((response) => {
-          return response.items;
+          return response;
         });
     });
   }, []); */
 
   useEffect(() => {
-    console.log("useEffect ", kitchen, " recipes ", recipes);
-    console.log("whatup order ", recipes);
+    /*     console.log("useEffect ", kitchen, " recipes ", recipes); */
     setLoading((prev) => !prev);
   }, [kitchen, recipes]);
 
@@ -232,7 +256,12 @@ const App = () => {
                 />
               }
             />
-
+            <Route
+              path="/postrecipe"
+              element={
+                <Postrecipe searchedRecipe={searchedRecipe} dark={dark} />
+              }
+            />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         ) : (

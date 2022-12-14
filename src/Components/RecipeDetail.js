@@ -7,9 +7,7 @@ const RecipeDetail = ({ recipes, kitchen, dark }) => {
   const navigate = useNavigate();
 
   const recipe = recipes.find(
-    (element) =>
-      element.fields.id ===
-      Number(id) /* && element.fields.category === kitchen */
+    (element) => element.id === Number(id) /* && element.category === kitchen */
   );
 
   useEffect(() => {
@@ -17,22 +15,23 @@ const RecipeDetail = ({ recipes, kitchen, dark }) => {
   }, []);
 
   console.log("recipes ", recipes);
-  console.log("category ", recipe.fields.category);
+  console.log("category ", recipe.category);
 
   return (
     <div>
       <div className="RecipeDetails">
         <div className="container">
           <div className={`${dark ? "darktext" : "lighttext"} recip`}>
-            <h1>{recipe.fields.title}</h1>
+            <h1>{recipe.title}</h1>
             <img
               className="recipeImage"
-              src={recipe.fields.recipeImage.fields.file.url}
+              src={`http://${recipe.recipeimage}`}
+              alt={`${recipe.title} Picture`}
             />
-            <Starrating stars={recipe?.fields.rating} total={5} />
-            <p>{recipe.fields.description}</p>
-            <p>{recipe.fields.ingredients}</p>
-            <p>{recipe.fields.instructionsnew}</p>
+            <Starrating stars={recipe?.rating} total={5} />
+            <p>{recipe.description}</p>
+            <p>{recipe.ingredients}</p>
+            <p>{recipe.instructionsnew}</p>
           </div>
         </div>
       </div>
