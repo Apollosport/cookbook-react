@@ -131,9 +131,10 @@
 }
 
 a.links:hover {
-  opacity: 0.3;
+  /* opacity: 0.3; */
   background-color: ghostwhite;
-  color: #282c34;
+  /* color: #282c34; */
+  color: rgba(0, 128, 128, 1);
 }
 
 a.detailLinksd:link {
@@ -204,9 +205,46 @@ a.detailLinksl:hover {
 }
 
 .goBack:hover {
-  opacity: 0.3;
   background-color: darkgrey;
   color: #282c34;
+}
+
+.goDelete {
+  color: white;
+  background-color: rgb(243, 107, 107);
+  font-size: large;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid ghostwhite;
+  padding: 5px 15px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.goDelete:hover {
+  background-color: darkred;
+  color: ghostwhite;
+}
+
+.goPost {
+  color: white;
+  background-color: rgb(0, 185, 0);
+  font-size: large;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid ghostwhite;
+  padding: 5px 15px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.goPost:hover {
+  background-color: darkgreen;
+  color: ghostwhite;
 }
 
 .dark {
@@ -293,4 +331,47 @@ input:checked + .slider:before {
   -webkit-transform: translateX(13px);
   -ms-transform: translateX(13px);
   transform: translateX(13px);
+}
+
+fieldset {
+  margin: 20px;
+  text-align: start;
+}
+
+.react-select-container {
+  width: 250px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.dropdiv {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.postinput {
+  margin: 10px;
+  height: auto;
+  width: 90%;
+  font-size: medium;
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.posttextinput {
+  margin: 10px;
+  width: 90%;
+  height: 100px;
+  font-size: large;
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.field {
+  text-align: center;
+}
+
+legend {
+  width: 50vw;
 }

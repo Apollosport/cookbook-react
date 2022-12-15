@@ -21,7 +21,7 @@ const RecipesLessDetail = ({ recipes, dark }) => {
             )}
             <img
               className="recipeImage"
-              src={`http://${recipe.recipeimage}`}
+              src={`${recipe.recipeimage}`}
               alt={`${recipe.title} Picture`}
             />
             <p>{recipe.id}</p>

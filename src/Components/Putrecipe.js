@@ -1,22 +1,23 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { editPost } from "./Editpost";
 import { useNavigate } from "react-router";
-import { createPost } from "./Createpost";
 import Select from "react-select";
 
-const Sendrecipe = ({ dark }) => {
-  const navigate = useNavigate();
-  const title = useRef();
-  const recipeimage = useRef();
-  const description = useRef();
-  const instructions = useRef();
-  const ingredients = useRef();
+const Putrecipe = ({ id, dark, recipe, setEdit }) => {
+  const [title, setTitle] = useState(recipe.title);
+  const [recipeimage, setRecipeImage] = useState(recipe.recipeimage);
+  const [description, setDescription] = useState(recipe.description);
+  const [instructions, setInstructions] = useState(recipe.instructions);
+  const [ingredients, setIngredients] = useState(recipe.ingredients);
   const options = [
     { value: "asi", label: "Asia" },
     { value: "eur", label: "Europe" },
     { value: "sam", label: "South-America" },
     { value: "ind", label: "India" },
   ];
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(
+    options.find((element) => element.value === recipe.category)
+  );
   const styles = {
     option: (provided, state) => ({
       ...provided,
@@ -41,38 +42,35 @@ const Sendrecipe = ({ dark }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { post, error } = await createPost({
-        title: title.current.value,
-        recipeimage: recipeimage.current.value,
-        description: description.current.value,
-        instructions: instructions.current.value,
-        ingredients: ingredients.current.value,
+      const { post, error } = await editPost(recipe.id, {
+        title: title,
+        recipeimage: recipeimage,
+        description: description,
+        instructions: instructions,
+        ingredients: ingredients,
         category: selectedOption.value,
+        idtwo: recipe.id,
       });
       if (error) throw error;
       console.log(post);
     } catch (err) {
       console.error(err);
     }
-    navigate("/");
-  };
-
-  const handleChange = (event) => {
-    console.log(event.target.value);
   };
 
   return (
     <fieldset className={`${dark ? "darktext" : "lighttext"} field`}>
       <legend>
-        <h1>Post your recipe</h1>
+        <h1>Edit {recipe.title}</h1>
       </legend>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="title"
           className="postinput"
-          ref={title}
-          placeholder="Recipe title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
 
         <br></br>
@@ -81,25 +79,17 @@ const Sendrecipe = ({ dark }) => {
           type="url"
           name="image"
           className="postinput"
-          ref={recipeimage}
-          placeholder="Image URL"
+          value={recipeimage}
+          onChange={(e) => setRecipeImage(e.target.value)}
         />
-        <input
-          type="file"
-          id="image"
-          name="image"
-          accept="image/png, image/jpeg, image/jiff"
-          /* onChange={() => console.log(image.value)} */
-          onChange={handleChange}
-        ></input>
 
         <br></br>
 
         <textarea
           name="description"
           className="posttextinput"
-          ref={description}
-          placeholder="Recipe description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
         <br></br>
@@ -107,16 +97,16 @@ const Sendrecipe = ({ dark }) => {
         <textarea
           name="instructions"
           className="posttextinput"
-          ref={instructions}
-          placeholder="Recipe instructions"
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
         ></textarea>
         <br></br>
 
         <textarea
           name="ingredients"
           className="posttextinput"
-          ref={ingredients}
-          placeholder="Recipe ingredients"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
         ></textarea>
         <br></br>
         <div className="dropdiv">
@@ -135,4 +125,4 @@ const Sendrecipe = ({ dark }) => {
   );
 };
 
-export default Sendrecipe;
+export default Putrecipe;
