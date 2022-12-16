@@ -24,7 +24,6 @@ const RecipesLessDetail = ({ recipes, dark }) => {
               src={`${recipe.recipeimage}`}
               alt={`${recipe.title} Picture`}
             />
-            <p>{recipe.id}</p>
           </Link>
           <Starrating stars={recipe?.rating} total={5} />
         </div>

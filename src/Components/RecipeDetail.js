@@ -43,9 +43,18 @@ const RecipeDetail = ({ recipes, kitchen, dark }) => {
                 alt={`${recipe.title} Picture`}
               />
               <Starrating stars={recipe?.rating} total={5} />
-              <p>{recipe.description}</p>
-              <p>{recipe.ingredients}</p>
-              <p>{recipe.instructionsnew}</p>
+              <p>
+                <strong>Description: </strong>
+                {recipe.description}
+              </p>
+              <p>
+                <strong>Ingredients: </strong>
+                {recipe.ingredients}
+              </p>
+              <p>
+                <strong>Instructions: </strong>
+                {recipe.instructions}
+              </p>
             </div>
           </div>
         </div>

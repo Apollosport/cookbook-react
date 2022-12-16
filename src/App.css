@@ -60,7 +60,8 @@
   border-width: 3px 0px;
   border-color: rgb(180, 180, 180);
   border-style: solid;
-  opacity: 80%;
+  opacity: 95%;
+  z-index: 9;
 }
 
 .imgNavbar {
@@ -211,7 +212,7 @@ a.detailLinksl:hover {
 
 .goDelete {
   color: white;
-  background-color: rgb(243, 107, 107);
+  background-color: rgb(90, 0, 0);
   font-size: large;
   text-decoration: none;
   font-weight: bold;
@@ -224,13 +225,13 @@ a.detailLinksl:hover {
 }
 
 .goDelete:hover {
-  background-color: darkred;
+  background-color: rgb(141, 0, 0);
   color: ghostwhite;
 }
 
 .goPost {
   color: white;
-  background-color: rgb(0, 185, 0);
+  background-color: darkgreen;
   font-size: large;
   text-decoration: none;
   font-weight: bold;
@@ -243,7 +244,7 @@ a.detailLinksl:hover {
 }
 
 .goPost:hover {
-  background-color: darkgreen;
+  background-color: rgb(0, 141, 0);
   color: ghostwhite;
 }
 
