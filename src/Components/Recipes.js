@@ -2,7 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecipesLessDetail from "./RecipesLessDetail";
 
-const Recipes = ({ recipes, setKitchen, setRecipes, dark }) => {
+const Recipes = ({
+  recipes,
+  setKitchen,
+  setRecipes,
+  dark,
+  setRecipeChanges,
+}) => {
   const navigate = useNavigate();
   const [timeout, setTimeout] = useState(false);
   const [randomRecipes, setRandomRecipes] = useState([]);
@@ -47,7 +53,11 @@ const Recipes = ({ recipes, setKitchen, setRecipes, dark }) => {
   return (
     <div className="App">
       {randomRecipes && (
-        <RecipesLessDetail recipes={randomRecipes} dark={dark} />
+        <RecipesLessDetail
+          recipes={randomRecipes}
+          dark={dark}
+          setRecipeChanges={setRecipeChanges}
+        />
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { createPost } from "./Createpost";
 import Select from "react-select";
 
-const Sendrecipe = ({ dark }) => {
+const Sendrecipe = ({ dark, setRecipeChanges }) => {
   const navigate = useNavigate();
   const title = useRef();
   const recipeimage = useRef();
@@ -40,6 +40,15 @@ const Sendrecipe = ({ dark }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title.current.value === "") {
+      alert("Please select a title!");
+      return;
+    }
+    if (selectedOption === null) {
+      alert("Please select the Land of origin!");
+      return;
+    }
+
     try {
       const { post, error } = await createPost({
         title: title.current.value,
@@ -54,7 +63,9 @@ const Sendrecipe = ({ dark }) => {
     } catch (err) {
       console.error(err);
     }
-    navigate("/");
+    alert(title.current.value + " was successfully put into the Database!");
+    setRecipeChanges((prev) => !prev);
+    navigate(`/recipes${selectedOption.value}`);
   };
 
   const handleChange = (event) => {
@@ -84,14 +95,14 @@ const Sendrecipe = ({ dark }) => {
           ref={recipeimage}
           placeholder="Image URL"
         />
-        <input
+        {/* <input
           type="file"
           id="image"
           name="image"
           accept="image/png, image/jpeg, image/jiff"
-          /* onChange={() => console.log(image.value)} */
+          onChange={() => console.log(image.value)}
           onChange={handleChange}
-        ></input>
+        ></input> */}
 
         <br></br>
 

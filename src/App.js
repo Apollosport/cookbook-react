@@ -14,15 +14,18 @@ import RecipeDetail from "./Components/RecipeDetail";
 import Searchresults from "./Components/Searchresults";
 import GridLoader from "react-spinners/ClipLoader";
 import Postrecipe from "./Components/Postrecipe";
+import axios from "axios";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [kitchen, setKitchen] = useState(null);
+
   const [input, setInput] = useState("");
   const [searchedRecipe, setSearchedRecipe] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(true);
   const server = "http://localhost:8080";
+  const [recipeChanges, setRecipeChanges] = useState(false);
 
   /* useEffect(() => {
     try {
@@ -56,6 +59,18 @@ const App = () => {
       });
   };
 
+  /* const getData = () => {
+    const temp = axios
+      .get("http://localhost:8080")
+
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((res) => {
+        setRecipes(res.data);
+      });
+  }; */
+
   /* .then((res) => {
         setRecipes(res);
       });
@@ -68,7 +83,7 @@ const App = () => {
   useEffect(() => {
     setLoading((prev) => !prev);
     getData();
-  }, []);
+  }, [, recipeChanges]);
 
   useEffect(() => {
     console.log("dark = ", dark);
@@ -77,6 +92,11 @@ const App = () => {
   useEffect(() => {
     console.log("searchedRecipe ", searchedRecipe);
   }, [searchedRecipe]);
+
+  useEffect(() => {
+    /*     console.log("useEffect ", kitchen, " recipes ", recipes); */
+    setLoading((prev) => !prev);
+  }, [kitchen, recipes]);
 
   /* setAltRecipes(async () => {
       client
@@ -92,11 +112,6 @@ const App = () => {
         });
     });
   }, []); */
-
-  useEffect(() => {
-    /*     console.log("useEffect ", kitchen, " recipes ", recipes); */
-    setLoading((prev) => !prev);
-  }, [kitchen, recipes]);
 
   /* useEffect(() => {
     try {
@@ -161,6 +176,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   dark={dark}
+                  setRecipeChanges={setRecipeChanges}
                 />
               }
             />
@@ -184,6 +200,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   dark={dark}
+                  setRecipeChanges={setRecipeChanges}
                 />
               }
             />
@@ -207,6 +224,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   dark={dark}
+                  setRecipeChanges={setRecipeChanges}
                 />
               }
             />
@@ -230,6 +248,7 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   dark={dark}
+                  setRecipeChanges={setRecipeChanges}
                 />
               }
             />
@@ -253,13 +272,18 @@ const App = () => {
                   setRecipes={setRecipes}
                   searchedRecipe={searchedRecipe}
                   dark={dark}
+                  setRecipeChanges={setRecipeChanges}
                 />
               }
             />
             <Route
               path="/postrecipe"
               element={
-                <Postrecipe searchedRecipe={searchedRecipe} dark={dark} />
+                <Postrecipe
+                  searchedRecipe={searchedRecipe}
+                  dark={dark}
+                  setRecipeChanges={setRecipeChanges}
+                />
               }
             />
             <Route path="*" element={<ErrorPage />} />

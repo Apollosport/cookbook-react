@@ -3,7 +3,8 @@ import { editPost } from "./Editpost";
 import { useNavigate } from "react-router";
 import Select from "react-select";
 
-const Putrecipe = ({ id, dark, recipe, setEdit }) => {
+const Putrecipe = ({ id, dark, recipe, setEdit, setRecipeChanges }) => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState(recipe.title);
   const [recipeimage, setRecipeImage] = useState(recipe.recipeimage);
   const [description, setDescription] = useState(recipe.description);
@@ -41,6 +42,10 @@ const Putrecipe = ({ id, dark, recipe, setEdit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title === "") {
+      alert("Please select a title!");
+      return;
+    }
     try {
       const { post, error } = await editPost(recipe.id, {
         title: title,
@@ -56,6 +61,9 @@ const Putrecipe = ({ id, dark, recipe, setEdit }) => {
     } catch (err) {
       console.error(err);
     }
+    alert(title + " was successfully changed!");
+    setRecipeChanges((prev) => !prev);
+    navigate(-1);
   };
 
   return (

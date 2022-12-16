@@ -1,7 +1,7 @@
 import Starrating from "./Starrating";
 import { Link } from "react-router-dom";
 
-const RecipesLessDetail = ({ recipes, dark }) => {
+const RecipesLessDetail = ({ recipes, dark, setRecipeChanges }) => {
   return (
     <div id="container" className="container">
       {recipes?.map((recipe, index) => (
